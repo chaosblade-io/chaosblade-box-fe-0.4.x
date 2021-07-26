@@ -51,8 +51,8 @@ const SceneList = () => {
         ],
         onSearch: ((value: string, filterValue?: any) => {
           getScenarios({
-            " pod": value,
-            " status": filterValue
+            "code": value,
+            "status": filterValue
           })
         })
       }}
