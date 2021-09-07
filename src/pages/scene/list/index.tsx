@@ -17,7 +17,7 @@ const SceneList = () => {
 
   const getScenarios = (params?: any) => {
     setVisible(true)
-    getScenariosPageable({...params, agentType: 0, installMode: 1}).then((data) => {
+    getScenariosPageable(params).then((data) => {
       setDataSource(data.data)
       setTotal(Number(data.total))
       setPage(data.page)
@@ -41,24 +41,24 @@ const SceneList = () => {
         placeholder: '请输入name进行搜索',
         filter: [
           {
-            value: '2',
-            label: '在线',
+            value: '1',
+            label: '是',
           },
           {
-            value: '3',
-            label: '离线',
+            value: '2',
+            label: '否',
           },
         ],
         onSearch: ((value: string, filterValue?: any) => {
           getScenarios({
-            "code": value,
+            "name": value,
             "status": filterValue
           })
         })
       }}
       pagination={{
         popupProps: {
-          align: " bl tl"
+          align: "bl tl"
         },
         current: page,
         pageSize: pageSize,
@@ -69,7 +69,7 @@ const SceneList = () => {
             "pageSize": pageSize
           })
         },
-        onChange: (current: number, e: Object) => {
+        onChange: (current: number, _: Object) => {
           getScenarios({
             "page": current,
             "pageSize": pageSize

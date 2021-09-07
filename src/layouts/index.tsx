@@ -4,7 +4,7 @@ import Page, {Breadcrumb} from "@alicloud/console-components-page";
 import React, {ReactNode, useEffect, useState} from "react";
 import ConsoleMenu from "@alicloud/console-components-console-menu";
 import {useIntl} from "react-intl";
-import {systemInfo} from "@/services/system";
+import {setI18n, systemInfo} from "@/services/system";
 import {setLocale} from "@@/plugin-locale/localeExports";
 import Logo from "@/images/chaosblade-logo.png";
 import {Button, Dropdown, Menu} from "@alicloud/console-components";
@@ -29,9 +29,11 @@ export const Topbar = (props: any) => {
           <Menu>
             <Menu.Item onClick={() => {
               setLocale('zh-CN', false);
+              setI18n({locale: 'zh-CN'}).then(r => {})
             }}>🇨🇳 简体中文</Menu.Item>
             <Menu.Item onClick={() => {
               setLocale('en-US', false);
+              setI18n({locale: 'en-US'}).then(r => {})
             }}>🇺🇸 English</Menu.Item>
           </Menu>
         </Dropdown>
@@ -77,7 +79,7 @@ const Nav = (props: any) => {
 export default function Layout({children, location, route, history, match}: IRouteComponentProps) {
 
   const [breadcrumb, setBreadcrumb] = useState<ReactNode>()
-  const [version, setVersion] = useState<string>('0.4.0');
+  const [version, setVersion] = useState<string>('0.4.2');
 
   const {pathname} = location
 
